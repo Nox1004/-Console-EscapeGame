@@ -1,2 +1,5 @@
-﻿  TitleScene.cpp
-  Escape.vcxproj -> C:\Users\KJH\Desktop\rnr\새 폴더\Escape\Escape\x64\Debug\Escape.exe
+﻿  InputMgr.cpp
+  main.cpp
+c:\users\kjh\documents\github\-console-escapegame\escape\main.cpp(15): warning C4101: 'scene' :참조되지 않은 지역 변수입니다.
+  코드를 생성하고 있습니다...
+  Escape.vcxproj -> C:\Users\KJH\Documents\GitHub\-Console-EscapeGame\x64\Debug\Escape.exe

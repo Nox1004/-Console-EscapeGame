@@ -40,7 +40,7 @@ void TitleScene::menuDraw()
 	Utility::gotoxy(_x, _y+2);
 	cout << "     Á¾ ·á     \n";
 
-	while (1)
+	/*while (1)
 	{
 		int input = Utility::inputContol();
 
@@ -80,5 +80,5 @@ void TitleScene::menuDraw()
 
 			break;
 		}
-	}
+	}*/
 }

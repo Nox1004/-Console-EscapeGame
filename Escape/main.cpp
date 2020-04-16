@@ -1,19 +1,22 @@
 #include <iostream>
 #include "TitleScene.h"
 #include "Utility.h"
+#include "GameMgr.h"
+#include "InputMgr.h"
 
 int main()
 {
 	int cntidx{ 0 };
 
+	InputMgr::instance();
+	GameMgr::instance();
+
 	// 포인터 배열을 이용
 	Scene* scene[2];
 
-	scene[0] = new TitleScene;
+	Utility::setColor(Utility::lightgreen, 0);
+	cout << "TEST입니다\n";
 
-	scene[cntidx]->run();
-
-	// gameMgr, sceneMgr 2개를 제작한다
-
+	Utility::setColor(Utility::white, 0);
 	return 0;
 }

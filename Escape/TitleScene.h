@@ -6,7 +6,7 @@ class TitleScene : public Scene
 {
 public:
 	TitleScene();
-
+	~TitleScene() { cout << "TitleScene ¼Ò¸ê\n"; }
 	void run() override;
 
 private:

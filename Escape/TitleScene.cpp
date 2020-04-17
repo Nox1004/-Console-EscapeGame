@@ -1,19 +1,22 @@
 #include "TitleScene.h"
 #include "Utility.h"
 
-TitleScene::TitleScene() : _cntidx{ 0 }, _x{ 20 }, _y{15} { }
+TitleScene::TitleScene() : _cntidx{ 0 } { }
 
 void TitleScene::run()
 {
-	system("mode con cols=56 lines=32 | title Å×½ºÆ®");
-
+	system("mode con cols=56 lines=32 | title í…ŒìŠ¤íŠ¸");
+	
 	titleDraw();
 
 	menuDraw();
+	
+	menuChoice();
 }
 
 void TitleScene::titleDraw()
 {
+	Utility::setColor(Utility::white, Utility::black);
 	cout << "\n\n";
 	cout << "	&&&&&   &&&    &&&    &    &&&&&   &&&&&  \n";
 	cout << "	&      &      &      & &   &    &  &      \n";
@@ -31,15 +34,24 @@ void TitleScene::titleDraw()
 
 void TitleScene::menuDraw()
 {
+	// ì»¤ì„œìœ„ì¹˜ ì„¤ì •
+	setX(20);
+	setY(15);
+	
+	Utility::setColor(Utility::lightgreen, Utility::black);
 	Utility::gotoxy(_x, _y);
-	cout << "> °Ô ÀÓ ½Ã ÀÛ  ";
-
+	cout << "> ê²Œ ìž„ ì‹œ ìž‘  ";
+	
+	Utility::setColor(Utility::white, Utility::black);
 	Utility::gotoxy(_x, _y + 1);
-	cout << "  °Ô ÀÓ Á¤ º¸  ";
+	cout << "  ê²Œ ìž„ ì • ë³´  ";
 
 	Utility::gotoxy(_x, _y+2);
-	cout << "     Á¾ ·á     \n";
+	cout << "     ì¢… ë£Œ     \n";
+}
 
+void TitleScene::menuChoice()
+{
 	/*while (1)
 	{
 		int input = Utility::inputContol();

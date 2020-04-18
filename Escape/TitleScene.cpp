@@ -1,96 +1,120 @@
 #include "TitleScene.h"
-#include "Utility.h"
+#include "SceneMgr.h"
+#include "InputMgr.h"
 
 TitleScene::TitleScene() : _cntidx{ 0 } { }
 
 void TitleScene::run()
 {
-	system("mode con cols=56 lines=32 | title í…ŒìŠ¤íŠ¸");
-	
+	Utility::clean();
+
 	titleDraw();
 
-	menuDraw();
-	
-	menuChoice();
+	menuDraw(_cntidx);
+
+	menuChoose();
 }
 
 void TitleScene::titleDraw()
 {
 	Utility::setColor(Utility::white, Utility::black);
 	cout << "\n\n";
-	cout << "	&&&&&   &&&    &&&    &    &&&&&   &&&&&  \n";
-	cout << "	&      &      &      & &   &    &  &      \n";
-	cout << "	&&&&   &&&&   &     &&&&&  &&&&&   &&&&   \n";
-	cout << "	&          &  &     &   &  &       &      \n";
-	cout << "	&&&&&  &&&&    &&&  &   &  &       &&&&&  \n";
+	cout << "        &&&&&   &&&    &&&    &    &&&&&   &&&&&  \n";
+	cout << "        &      &      &      & &   &    &  &      \n";
+	cout << "        &&&&   &&&&   &     &&&&&  &&&&&   &&&&   \n";
+	cout << "        &          &  &     &   &  &       &      \n";
+	cout << "        &&&&&  &&&&    &&&  &   &  &       &&&&&  \n";
 	cout << "\n";
+	Utility::setColor(Utility::yellow, Utility::black);
 	cout << "	       &&&     &    &     &  &&&&&  \n";
 	cout << "	      &       & &   &&   &&  &      \n";
 	cout << "	      & &&&  &&&&&  & & & &  &&&&   \n";
 	cout << "	      &   &  &   &  &  &  &  &      \n";
 	cout << "	       &&&   &   &  &     &  &&&&&  \n";
 	cout << "\n";
+	Utility::setColor(Utility::white, Utility::black);
 }
 
-void TitleScene::menuDraw()
+void TitleScene::menuDraw(int cntidx)
 {
-	// ì»¤ì„œìœ„ì¹˜ ì„¤ì •
+	// Ä¿¼­À§Ä¡ ¼³Á¤
 	setX(20);
 	setY(15);
-	
-	Utility::setColor(Utility::lightgreen, Utility::black);
-	Utility::gotoxy(_x, _y);
-	cout << "> ê²Œ ìž„ ì‹œ ìž‘  ";
-	
-	Utility::setColor(Utility::white, Utility::black);
-	Utility::gotoxy(_x, _y + 1);
-	cout << "  ê²Œ ìž„ ì • ë³´  ";
 
-	Utility::gotoxy(_x, _y+2);
-	cout << "     ì¢… ë£Œ     \n";
+	if (cntidx == 0)
+		Utility::setColor(Utility::lightgreen, Utility::black);
+	else
+		Utility::setColor(Utility::white, Utility::black);
+
+	Utility::gotoxy(getX(), getY());
+	cout << "  °Ô ÀÓ ½Ã ÀÛ  ";
+
+
+
+	if (cntidx == 1)
+		Utility::setColor(Utility::lightgreen, Utility::black);
+	else
+		Utility::setColor(Utility::white, Utility::black);
+
+	Utility::gotoxy(getX(), getY() + 1);
+	cout << "  °Ô ÀÓ Á¤ º¸  ";
+
+
+
+	if (cntidx == 2)
+		Utility::setColor(Utility::lightgreen, Utility::black);
+	else
+		Utility::setColor(Utility::white, Utility::black);
+
+	Utility::gotoxy(getX(), getY() + 2);
+	cout << "     Á¾ ·á     \n";
+
+	Utility::setColor(Utility::white, Utility::black);
 }
 
-void TitleScene::menuChoice()
+void TitleScene::menuChoose()
 {
-	/*while (1)
+	while (1)
 	{
-		int input = Utility::inputContol();
+		int input = InputMgr::instance()->getControl();
 
 		switch (input)
 		{
-		case Utility::UP:
+		case InputMgr::Up:
 			if (_cntidx != 0)
 			{
-				Utility::gotoxy(_x, _y);
-				cout << " ";
-
-				_y -= 1;
-
-				Utility::gotoxy(_x, _y);
-				cout << ">";
-
-				_cntidx--;
+				menuDraw(--_cntidx);
 			}
 			break;
 
-		case Utility::DOWN:
+		case InputMgr::Down:
 			if (_cntidx != 2)
 			{
-				Utility::gotoxy(_x, _y);
-				cout << " ";
-
-				_y += 1;
-
-				Utility::gotoxy(_x, _y);
-				cout << ">";
-
-				_cntidx++;
+				menuDraw(++_cntidx);
 			}
 			break;
 
-		case Utility::ENTER:
-
+		case InputMgr::Enter:
+			menuChoice(_cntidx);
 			break;
 		}
-	}*/
+	}
+}
+
+void TitleScene::menuChoice(int cntidx)
+{
+	if (_cntidx == 0)
+	{
+		// °ÔÀÓ½ÃÀÛ
+	}
+	else if (_cntidx == 1)
+	{
+		// °ÔÀÓÁ¤º¸·Î ÀüÈ¯ÇÏ±â
+		SceneMgr::instance()->changeScene(SceneMgr::Info);
+	}
+	else
+	{
+		// Á¾·á
+		exit(0);
+	}
 }

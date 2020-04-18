@@ -3,22 +3,26 @@
 #include "Scene.h"
 
 //
-// íƒ€ì´í‹€í™”ë©´ì„ ë‚˜íƒ€ë‚´ëŠ” í´ë˜ìŠ¤
+// Å¸ÀÌÆ² È­¸éÀ» ³ªÅ¸³»´Â Å¬·¡½º
 //
 
 class TitleScene : public Scene
 {
 public:
 	TitleScene();
-	~TitleScene() { cout << "TitleScene Â¼Ã’Â¸Ãª\n"; }
-	
+	~TitleScene() { cout << "title Scene ¼Ò¸ê\n"; }
+
 	void run() override;
 
 private:
 	void titleDraw();
-	void menuDraw();
-	void menuChoice();
-	
+
+	void menuDraw(int cntidx);
+
+	void menuChoose();
+
+	void menuChoice(int cntidx);
+
 private:
 	int _cntidx;
 };

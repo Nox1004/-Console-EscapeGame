@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Singleton.h"
+#include "Scene.h"
+#include <vector>
 
 //
 // "纠 包府磊 努贰胶" 
@@ -11,7 +13,22 @@ class SceneMgr : public Singleton<SceneMgr>
 {
 	friend class Singleton<SceneMgr>;
 
+public:
+	enum SceneName { Title = 0, Info, Game };
+
+public:
+	void changeScene(SceneName scene);
+
+	void run();
+
 private:
-	SceneMgr() { cout << "SceneMgr 积己\n"; }
-	~SceneMgr() { cout << "SceneMgr 家戈\n"; };
+	SceneMgr();
+	~SceneMgr();
+
+	void run(int idx);
+
+private:
+	std::vector<Scene *> _scene;
+
+	int _cntidx;
 };

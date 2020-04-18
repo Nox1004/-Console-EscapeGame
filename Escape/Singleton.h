@@ -16,14 +16,21 @@ protected:
 	virtual ~Singleton() { cout << "singleton ¼Ò¸ê\n"; }
 
 public:
-	static T& instance()
+	static T* instance()
 	{
-		static T _instance;
+		if (!_pinstance)
+			_pinstance = new T();
 
-		return _instance;
+		return _pinstance;
 	}
 
 private:
 	Singleton(const Singleton&) { }
 	Singleton& operator=(const Singleton&) { }
+
+private:
+	static T* _pinstance;
 };
+
+template<class T> 
+T* Singleton<T>::_pinstance = nullptr;

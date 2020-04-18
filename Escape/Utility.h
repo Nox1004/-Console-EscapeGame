@@ -20,4 +20,6 @@ public:
 	static void gotoxy(int x, int y);
 
 	static void setColor(int color, int bgColor);
+
+	static void clean();
 };

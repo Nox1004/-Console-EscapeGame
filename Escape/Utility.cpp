@@ -19,3 +19,8 @@ void Utility::setColor(int color, int bgColor)
 
 	SetConsoleTextAttribute(consoleHandle, (bgColor << 4) | color);
 }
+
+void Utility::clean()
+{
+	system("cls");
+}

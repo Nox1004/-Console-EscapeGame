@@ -144,13 +144,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameMgr.cpp" />
+    <ClCompile Include="InfoScene.cpp" />
     <ClCompile Include="InputMgr.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameMgr.h" />
+    <ClInclude Include="InfoScene.h" />
     <ClInclude Include="InputMgr.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />

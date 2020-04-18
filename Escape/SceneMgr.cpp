@@ -30,7 +30,7 @@ void SceneMgr::changeScene(SceneName scene)
 {
 	_cntidx = static_cast<int>(scene);
 
-	// 변경된 화면작동
+	// 변경된 화면 작동시키기
 	_scene[_cntidx]->run();
 }
 

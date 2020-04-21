@@ -1,7 +1,2 @@
-﻿  InfoScene.cpp
-  InputMgr.cpp
-  SceneMgr.cpp
-  TitleScene.cpp
-  main.cpp
-  코드를 생성하고 있습니다...
+﻿  GameScene.cpp
   Escape.vcxproj -> C:\Users\KJH\Documents\GitHub\-Console-EscapeGame\x64\Debug\Escape.exe

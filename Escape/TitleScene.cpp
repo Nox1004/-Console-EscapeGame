@@ -2,7 +2,7 @@
 #include "SceneMgr.h"
 #include "InputMgr.h"
 
-TitleScene::TitleScene() : _cntidx{ 0 } { }
+TitleScene::TitleScene() : _menuidx{ 0 } { }
 
 void TitleScene::run()
 {
@@ -10,7 +10,7 @@ void TitleScene::run()
 
 	titleDraw();
 
-	menuDraw(_cntidx);
+	menuDraw(_menuidx);
 
 	menuChoose();
 }
@@ -35,13 +35,13 @@ void TitleScene::titleDraw()
 	Utility::setColor(Utility::white, Utility::black);
 }
 
-void TitleScene::menuDraw(int cntidx)
+void TitleScene::menuDraw(int menuidx)
 {
 	// 커서위치 설정
 	setX(20);
 	setY(15);
 
-	if (cntidx == 0)
+	if (menuidx == 0)
 		Utility::setColor(Utility::lightgreen, Utility::black);
 	else
 		Utility::setColor(Utility::white, Utility::black);
@@ -51,7 +51,7 @@ void TitleScene::menuDraw(int cntidx)
 
 
 
-	if (cntidx == 1)
+	if (menuidx == 1)
 		Utility::setColor(Utility::lightgreen, Utility::black);
 	else
 		Utility::setColor(Utility::white, Utility::black);
@@ -61,7 +61,7 @@ void TitleScene::menuDraw(int cntidx)
 
 
 
-	if (cntidx == 2)
+	if (menuidx == 2)
 		Utility::setColor(Utility::lightgreen, Utility::black);
 	else
 		Utility::setColor(Utility::white, Utility::black);
@@ -81,33 +81,34 @@ void TitleScene::menuChoose()
 		switch (input)
 		{
 		case InputMgr::Up:
-			if (_cntidx != 0)
+			if (_menuidx != 0)
 			{
-				menuDraw(--_cntidx);
+				menuDraw(--_menuidx);
 			}
 			break;
 
 		case InputMgr::Down:
-			if (_cntidx != 2)
+			if (_menuidx != 2)
 			{
-				menuDraw(++_cntidx);
+				menuDraw(++_menuidx);
 			}
 			break;
 
 		case InputMgr::Enter:
-			menuChoice(_cntidx);
+			menuChoice(_menuidx);
 			break;
 		}
 	}
 }
 
-void TitleScene::menuChoice(int cntidx)
+void TitleScene::menuChoice(int menuidx)
 {
-	if (_cntidx == 0)
+	if (menuidx == 0)
 	{
 		// 게임시작
+		SceneMgr::instance()->changeScene(SceneMgr::Game);
 	}
-	else if (_cntidx == 1)
+	else if (menuidx == 1)
 	{
 		// 게임정보로 전환하기
 		SceneMgr::instance()->changeScene(SceneMgr::Info);

@@ -6,7 +6,6 @@
 
 //
 // "씬 관리자 클래스" 
-// 씬 제작에 들어가기 전까지는 아무기능없다.
 //
 
 class SceneMgr : public Singleton<SceneMgr>

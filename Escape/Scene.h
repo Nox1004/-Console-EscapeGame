@@ -13,8 +13,8 @@ protected:
 	void setX(int x) { _x = x; }
 	void setY(int y) { _y = y; }
 
-	int getX() { return _x; }
-	int getY() { return _y; }
+	int getX() const { return _x; }
+	int getY() const { return _y; }
 
 private:
 	int _x;

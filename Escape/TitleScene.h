@@ -17,12 +17,12 @@ public:
 private:
 	void titleDraw();
 
-	void menuDraw(int cntidx);
+	void menuDraw(int menuidx);
 
 	void menuChoose();
 
-	void menuChoice(int cntidx);
+	void menuChoice(int menuidx);
 
 private:
-	int _cntidx;
+	int _menuidx;
 };

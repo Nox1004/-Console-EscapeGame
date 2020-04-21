@@ -11,9 +11,9 @@ template <class T>
 class Singleton
 {
 protected:
-	Singleton() { cout << "singleton »ý¼º\n"; }
+	Singleton() { }
 
-	virtual ~Singleton() { cout << "singleton ¼Ò¸ê\n"; }
+	virtual ~Singleton() { }
 
 public:
 	static T* instance()

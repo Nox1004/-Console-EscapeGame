@@ -1,6 +1,7 @@
 #include "SceneMgr.h"
 #include "TitleScene.h"
 #include "InfoScene.h"
+#include "GameScene.h"
 
 SceneMgr::SceneMgr() : _cntidx{0}
 {
@@ -8,6 +9,13 @@ SceneMgr::SceneMgr() : _cntidx{0}
 
 	_scene.push_back(new TitleScene);
 	_scene.push_back(new InfoScene);
+	_scene.push_back(new GameScene);
+
+	CONSOLE_CURSOR_INFO consoleCursor;
+	consoleCursor.bVisible = false;
+	consoleCursor.dwSize = 1;
+
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &consoleCursor);
 }
 
 SceneMgr::~SceneMgr()

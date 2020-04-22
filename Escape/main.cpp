@@ -4,6 +4,7 @@
 #include "GameMgr.h"
 #include "SceneMgr.h"
 #include "InputMgr.h"
+#include <thread>
 
 SceneMgr *sceneMgr = SceneMgr::instance();
 

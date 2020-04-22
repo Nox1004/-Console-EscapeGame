@@ -24,3 +24,18 @@ void Utility::clean()
 {
 	system("cls");
 }
+
+void Utility::delay(float time)
+{
+	clock_t delay = time * CLOCKS_PER_SEC;
+
+	clock_t start = clock();
+
+	while (clock() - start < delay) { }
+}
+
+void Utility::textSleep(const char *pStr, DWORD dwMilliseconds)
+{
+	cout << pStr;
+	Sleep(dwMilliseconds);
+}

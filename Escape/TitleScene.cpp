@@ -1,4 +1,5 @@
 #include "TitleScene.h"
+#include "GameMgr.h"
 #include "SceneMgr.h"
 #include "InputMgr.h"
 
@@ -15,7 +16,7 @@ void TitleScene::run()
 	menuChoose();
 }
 
-void TitleScene::titleDraw()
+void TitleScene::titleDraw() const
 {
 	Utility::setColor(Utility::white, Utility::black);
 	cout << "\n\n";
@@ -37,16 +38,13 @@ void TitleScene::titleDraw()
 
 void TitleScene::menuDraw(int menuidx)
 {
-	// 커서위치 설정
-	setX(20);
-	setY(15);
 
 	if (menuidx == 0)
 		Utility::setColor(Utility::lightgreen, Utility::black);
 	else
 		Utility::setColor(Utility::white, Utility::black);
 
-	Utility::gotoxy(getX(), getY());
+	Utility::gotoxy(20, 15);
 	cout << "  게 임 시 작  ";
 
 
@@ -56,7 +54,7 @@ void TitleScene::menuDraw(int menuidx)
 	else
 		Utility::setColor(Utility::white, Utility::black);
 
-	Utility::gotoxy(getX(), getY() + 1);
+	Utility::gotoxy(20, 16);
 	cout << "  게 임 정 보  ";
 
 
@@ -66,7 +64,7 @@ void TitleScene::menuDraw(int menuidx)
 	else
 		Utility::setColor(Utility::white, Utility::black);
 
-	Utility::gotoxy(getX(), getY() + 2);
+	Utility::gotoxy(20, 17);
 	cout << "     종 료     \n";
 
 	Utility::setColor(Utility::white, Utility::black);
@@ -74,7 +72,7 @@ void TitleScene::menuDraw(int menuidx)
 
 void TitleScene::menuChoose()
 {
-	while (1)
+	while (getSceneState())
 	{
 		int input = InputMgr::instance()->getControl();
 
@@ -101,11 +99,13 @@ void TitleScene::menuChoose()
 	}
 }
 
-void TitleScene::menuChoice(int menuidx)
+void TitleScene::menuChoice(int menuidx) const
 {
 	if (menuidx == 0)
 	{
 		// 게임시작
+		GameMgr::instance()->gameStart();
+
 		SceneMgr::instance()->changeScene(SceneMgr::Game);
 	}
 	else if (menuidx == 1)

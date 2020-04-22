@@ -10,19 +10,26 @@
 class GameScene : public Scene
 {
 public:
-	GameScene() {}
-
-	// Scene을(를) 통해 상속됨
-	void run() override;
+	GameScene();
 
 private:
-	void startDraw() const;
+	// Scene을(를) 통해 상속됨
+	virtual void run() override;
 
-	void nextDraw() const;
+	void startDraw();
+	void eventActivate();
+	void mapDraw(int idx) const;
+	void playerDraw();
 
-	void mapDraw() const;
+	void playerMoveDraw();
 
 	void moveInput();
 
-	void playerDraw();
+	static void invisibleWallEventDraw();
+	void nextFloorEventDraw();
+	void fallTrapEventDraw();
+	void boomTrapEventDraw();
+
+private:
+	bool _isActivatedEvent;
 };

@@ -2,6 +2,8 @@
 #include "TitleScene.h"
 #include "InfoScene.h"
 #include "GameScene.h"
+#include "SuccessScene.h"
+#include "FailureScene.h"
 
 SceneMgr::SceneMgr() : _cntidx{0}
 {
@@ -10,6 +12,8 @@ SceneMgr::SceneMgr() : _cntidx{0}
 	_scene.push_back(new TitleScene);
 	_scene.push_back(new InfoScene);
 	_scene.push_back(new GameScene);
+	_scene.push_back(new SuccessScene);
+	_scene.push_back(new FailureScene);
 
 	CONSOLE_CURSOR_INFO consoleCursor;
 	consoleCursor.bVisible = false;
@@ -31,18 +35,17 @@ SceneMgr::~SceneMgr()
 
 void SceneMgr::run()
 {
-	run(_cntidx);
+	// 작동
+	_scene[_cntidx]->openScene();
 }
 
 void SceneMgr::changeScene(SceneName scene)
 {
+	// 이전 씬의 작동을 종료.
+	_scene[_cntidx]->closeScene();
+
 	_cntidx = static_cast<int>(scene);
 
-	// 변경된 화면 작동시키기
-	_scene[_cntidx]->run();
-}
-
-void SceneMgr::run(int idx)
-{
-	_scene[idx]->run();
+	// 변경된 씬을 작동시작
+	_scene[_cntidx]->openScene();
 }

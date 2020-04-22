@@ -2,6 +2,7 @@
 
 #include <Windows.h>
 #include <conio.h>
+#include <ctime>
 #include <iostream>
 
 using namespace std;
@@ -22,4 +23,8 @@ public:
 	static void setColor(int color, int bgColor);
 
 	static void clean();
+
+	static void delay(float time);
+
+	static void textSleep(const char *pStr, DWORD dwMilliseconds);
 };

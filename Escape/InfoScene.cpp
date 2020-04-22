@@ -50,7 +50,7 @@ void InfoScene::explanationDraw()
 
 void InfoScene::checkInput()
 {
-	while (1)
+	while (getSceneState())
 	{
 		int input = InputMgr::instance()->getControl();
 

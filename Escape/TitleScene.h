@@ -10,18 +10,18 @@ class TitleScene : public Scene
 {
 public:
 	TitleScene();
-	~TitleScene() { cout << "title Scene ¼Ò¸ê\n"; }
 
-	void run() override;
+private:	
+	// SceneÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
+	virtual void run() override;
 
-private:
-	void titleDraw();
+	void titleDraw() const;
 
 	void menuDraw(int menuidx);
 
 	void menuChoose();
 
-	void menuChoice(int menuidx);
+	void menuChoice(int menuidx) const;
 
 private:
 	int _menuidx;

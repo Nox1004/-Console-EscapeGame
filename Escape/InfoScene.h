@@ -8,13 +8,10 @@
 
 class InfoScene : public Scene
 {
-public:
-	InfoScene() { };
-	~InfoScene() { cout << "InfoScene Scene ¼Ò¸ê\n"; }
-
-	void run() override;
-
 private:
+	// SceneÀ»(¸¦) ÅëÇØ »ó¼ÓµÊ
+	virtual void run() override;
+
 	void explanationDraw();
 
 	void checkInput();

@@ -13,7 +13,7 @@ class SceneMgr : public Singleton<SceneMgr>
 	friend class Singleton<SceneMgr>;
 
 public:
-	enum SceneName { Title = 0, Info, Game };
+	enum SceneName { Title = 0, Info, Game, Success, Failure };
 
 public:
 	void changeScene(SceneName scene);
@@ -23,8 +23,6 @@ public:
 private:
 	SceneMgr();
 	~SceneMgr();
-
-	void run(int idx);
 
 private:
 	std::vector<Scene *> _scene;

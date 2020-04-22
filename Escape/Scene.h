@@ -5,18 +5,16 @@
 class Scene
 {
 public:
-	virtual void run() = 0;
+	void openScene();
+	void closeScene();
 
-	virtual ~Scene() { cout << "Scene ¼Ò¸ê\n"; };
+	virtual ~Scene() { };
 
 protected:
-	void setX(int x) { _x = x; }
-	void setY(int y) { _y = y; }
+	virtual void run() = 0;
 
-	int getX() const { return _x; }
-	int getY() const { return _y; }
+	bool getSceneState() const { return _isActivating; }
 
 private:
-	int _x;
-	int _y;
+	bool _isActivating;
 };

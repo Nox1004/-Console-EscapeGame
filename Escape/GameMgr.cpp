@@ -2,9 +2,6 @@
 
 GameMgr::GameMgr() : _cntidx(0), _rows(20), _cols(56)
 {
-	_playerPos = make_pair(1, 1);
-	_playerPrePos = make_pair(1, 1);
-
 	// map 열-56 행-20 으로 생각하고 제작한다.
 	vector<string> map;
 
@@ -18,8 +15,8 @@ GameMgr::GameMgr() : _cntidx(0), _rows(20), _cols(56)
 
 	map.push_back("11111111111111111111111111111111111111111111111111111111");
 	map.push_back("10010000000000000000000000000000000000000000000000000001");
-	map.push_back("11010000000000000000000000000000000000000000000000000001");
-	map.push_back("10001000000000000000000000000000000000000000000000000001");
+	map.push_back("12410000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
 	map.push_back("11100000000000000000000000000000000000000000000000000001");
 	map.push_back("11110000000000000000000000000000000000000000000000000001");
 	map.push_back("10000000000000000000000000000000000000000000000000000001");
@@ -42,8 +39,46 @@ GameMgr::GameMgr() : _cntidx(0), _rows(20), _cols(56)
 #pragma endregion
 
 #pragma region 두번째 층
-	
+	map.push_back("11111111111111111111111111111111111111111111111111111111");
+	map.push_back("1d010000000000000000000000000000000000000000000000000001");
+	map.push_back("12010000000000000000000000000000000000000000000000000001");
+	map.push_back("10003000000000000000000000000000000000000000000000000001");
+	map.push_back("11100000000000000000000000000000000000000000000000000001");
+	map.push_back("11110000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
+	map.push_back("10000000000000000000000000000000000000000000000000021111");
+	map.push_back("10000000000000000000000000000000000000000000000000000001");
+	map.push_back("11111111111111111111111111111111111111111111111111111111");
+
+	_map.push_back(map);
+	map.clear();
 #pragma endregion
+}
+
+void GameMgr::gameStart()
+{
+	_cntidx = 0;
+	_playerEvent = None;
+
+	_isPlaying = true;
+
+	_playerPos = make_pair(1, 1);
+	_playerPrePos = make_pair(1, 1);
+}
+
+void GameMgr::gameEnd()
+{
+	_isPlaying = false;
 }
 
 //
@@ -59,40 +94,32 @@ bool GameMgr::checkPlayerMoving(InputMgr::KeyInput key)
 	case InputMgr::KeyInput::Left: 
 		{
 			auto ctemp = _map[_cntidx][getPlayerPosY()][getPlayerPosX()-1];
-			if (ctemp == '0')
-			{
-				result = true;
-			}
+			
+			checkNextEvent(&result, ctemp);
 		}
 		break;
 
 	case InputMgr::KeyInput::Right:
 		{
 			auto ctemp = _map[_cntidx][getPlayerPosY()][getPlayerPosX()+1];
-			if (ctemp == '0')
-			{
-				result = true;
-			}
+			
+			checkNextEvent(&result, ctemp);
 		}
 		break;
 
 	case InputMgr::KeyInput::Up:
 		{
 			auto ctemp = _map[_cntidx][getPlayerPosY() - 1][getPlayerPosX()];
-			if (ctemp == '0')
-			{
-				result = true;
-			}
+			
+			checkNextEvent(&result, ctemp);
 		}
 		break;
 
 	case InputMgr::KeyInput::Down:
 		{
 			auto ctemp = _map[_cntidx][getPlayerPosY() + 1][getPlayerPosX()];
-			if (ctemp == '0')
-			{
-				result = true;
-			}
+			
+			checkNextEvent(&result, ctemp);
 		}
 		break;
 	}
@@ -123,7 +150,37 @@ void GameMgr::playerMove(InputMgr::KeyInput key)
 		_playerPos.second++;
 		break;
 	}
+}
 
-	Utility::gotoxy(30, 23);
-	cout << "x : " << getPlayerPosX() << " y : " << getPlayerPosY();;
+//
+// checkPlayerMoving에서 호출하는 함수
+// event 설정 및 bool 값을 변경시켜준다.
+// 
+void GameMgr::checkNextEvent(bool *isMoving, char ch)
+{
+	if (ch == '0')
+	{
+		*isMoving = true;
+		_playerEvent = None;
+	}
+	else if (ch == '2')
+	{
+		*isMoving = false;
+		_playerEvent = InvisibleWall;
+	}
+	else if (ch == '3')
+	{
+		*isMoving = true;
+		_playerEvent = FallTrap;
+	}
+	else if (ch == '4')
+	{
+		*isMoving = true;
+		_playerEvent = BoomTrap;
+	}
+	else if (ch == 'd')
+	{
+		*isMoving = true;
+		_playerEvent = NextFloor;
+	}
 }

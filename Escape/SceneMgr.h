@@ -3,9 +3,6 @@
 #include "Singleton.h"
 #include "Scene.h"
 #include <vector>
-//
-// "화면 관리자 클래스"
-//
 
 class SceneMgr : public Singleton<SceneMgr>
 {

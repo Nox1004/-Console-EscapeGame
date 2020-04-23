@@ -32,4 +32,6 @@ private:
 
 private:
 	bool _isActivatedEvent;
+
+	static bool _invisibleEventAct;
 };

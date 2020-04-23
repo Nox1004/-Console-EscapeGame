@@ -17,7 +17,6 @@ public:
 
 public:
 	void gameStart();
-	void gameEnd();
 
 	bool checkPlayerMoving(InputMgr::KeyInput key);
 	void playerMove(InputMgr::KeyInput key);
@@ -40,8 +39,6 @@ public:
 	int getMaxRow() const { return _rows; }
 	int getMaxCol() const { return _cols; }
 
-	bool getPlaying() const { return _isPlaying; }
-
 private:
 	GameMgr();
 	~GameMgr() { }
@@ -56,8 +53,6 @@ private:
 
 	std::pair<int, int> _playerPos;		// 현재 위치값
 	std::pair<int, int> _playerPrePos;	// 이전 위치값
-
-	bool _isPlaying;
 
 	int _cntidx;
 

@@ -4,6 +4,8 @@
 #include "InputMgr.h"
 #include <thread>
 
+bool GameScene::_invisibleEventAct = false;
+
 GameScene::GameScene() : _isActivatedEvent(false) { }
 
 void GameScene::run()
@@ -12,7 +14,7 @@ void GameScene::run()
 
 	Utility::clean();
 
-	mapDraw(0);
+	mapDraw(GameMgr::instance()->getidx());
 
 	playerDraw();
 
@@ -107,7 +109,7 @@ void GameScene::mapDraw(int idx) const
 			// 그 외 오브젝트들
 			else
 			{
-				Utility::setColor(Utility::white, Utility::black);
+				Utility::setColor(Utility::black, Utility::black);
 				cout << temp[i][j];
 			}
 		}
@@ -176,15 +178,20 @@ void GameScene::playerMoveDraw()
 // 
 void GameScene::invisibleWallEventDraw()
 {
-	Utility::gotoxy(13, 21);
-	Utility::setColor(Utility::lightgreen, Utility::black);
-	cout << " '여기로는 이동할 수 없군.. ' ";
-	
-	Utility::delay(0.8f);
+	if (!_invisibleEventAct)
+	{
+		_invisibleEventAct = true;
+		Utility::gotoxy(13, 21);
+		Utility::setColor(Utility::lightgreen, Utility::black);
+		cout << " '여기로는 이동할 수 없군.. ' ";
 
-	Utility::gotoxy(13, 21);
-	Utility::setColor(Utility::black, Utility::black);
-	cout << " '여기로는 이동할 수 없군.. ' ";
+		Utility::delay(0.5f);
+
+		Utility::gotoxy(13, 21);
+		Utility::setColor(Utility::black, Utility::black);
+		cout << " '여기로는 이동할 수 없군.. ' ";
+		_invisibleEventAct = false;
+	}
 }
 
 //

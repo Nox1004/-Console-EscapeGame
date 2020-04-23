@@ -17,6 +17,6 @@ public:
 	int getControl();
 
 private:
-	InputMgr() { cout << "InputMgr »ý¼º\n"; }
-	~InputMgr() { cout << "InputMgr ¼Ò¸ê\n"; };
+	InputMgr() { }
+	~InputMgr() { };
 };

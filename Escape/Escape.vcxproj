@@ -162,6 +162,7 @@
     <ClInclude Include="InfoScene.h" />
     <ClInclude Include="InputMgr.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SuccessScene.h" />
     <ClInclude Include="TitleScene.h" />

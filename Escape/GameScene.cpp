@@ -122,10 +122,11 @@ void GameScene::moveInput()
 	while (getSceneState())
 	{
 		int value = InputMgr::instance()->getControl();
-		auto input = static_cast<InputMgr::KeyInput>(value);
 
 		if (!_isActivatedEvent) 
 		{
+			auto input = static_cast<InputMgr::KeyInput>(value);
+
 			// 플레이어가 이동할 수 있는지 판별
 			if (gameMgr->checkPlayerMoving(input))
 			{
@@ -178,8 +179,8 @@ void GameScene::invisibleWallEventDraw()
 	Utility::gotoxy(13, 21);
 	Utility::setColor(Utility::lightgreen, Utility::black);
 	cout << " '여기로는 이동할 수 없군.. ' ";
-
-	Utility::delay(1.0f);
+	
+	Utility::delay(0.8f);
 
 	Utility::gotoxy(13, 21);
 	Utility::setColor(Utility::black, Utility::black);

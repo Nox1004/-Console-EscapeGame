@@ -27,12 +27,25 @@ void Utility::clean()
 
 void Utility::delay(float time)
 {
-	clock_t delay = time * CLOCKS_PER_SEC;
+	clock_t delay = static_cast<clock_t>(time * CLOCKS_PER_SEC);
 
 	clock_t start = clock();
 
 	while (clock() - start < delay) { }
 }
+
+void Utility::delay(float time, bool* bValue)
+{
+	clock_t delay = static_cast<clock_t>(time * CLOCKS_PER_SEC);
+
+	clock_t start = clock();
+
+	while (*bValue && clock() - start < delay) { }
+
+	if (*bValue)
+		*bValue = false;
+}
+
 
 void Utility::textSleep(const char *pStr, DWORD dwMilliseconds)
 {

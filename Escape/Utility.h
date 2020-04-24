@@ -26,5 +26,7 @@ public:
 
 	static void delay(float time);
 
+	static void delay(float time, bool* bValue);
+
 	static void textSleep(const char *pStr, DWORD dwMilliseconds);
 };

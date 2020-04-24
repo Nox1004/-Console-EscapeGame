@@ -185,12 +185,11 @@ void GameScene::invisibleWallEventDraw()
 		Utility::setColor(Utility::lightgreen, Utility::black);
 		cout << " '여기로는 이동할 수 없군.. ' ";
 
-		Utility::delay(0.5f);
+		Utility::delay(0.85f, &_invisibleEventAct);
 
 		Utility::gotoxy(13, 21);
 		Utility::setColor(Utility::black, Utility::black);
 		cout << " '여기로는 이동할 수 없군.. ' ";
-		_invisibleEventAct = false;
 	}
 }
 
@@ -217,7 +216,12 @@ void GameScene::nextFloorEventDraw()
 //
 void GameScene::fallTrapEventDraw()
 {
+	// 이벤트 작동을 true로 전환
 	_isActivatedEvent = true;
+
+	// 쓰레드로 동작하고 있는 invisibleWallEventDraw 함수를 종료시키기
+	_invisibleEventAct = false;
+	Utility::delay(0.2f);
 
 	Utility::gotoxy(19, 21);
 	Utility::setColor(Utility::yellow, Utility::black);
@@ -226,10 +230,11 @@ void GameScene::fallTrapEventDraw()
 	Utility::delay(2);
 	Utility::clean();
 	Utility::setColor(Utility::lightgreen, Utility::black);
-	Utility::gotoxy(18, 15);
+	Utility::gotoxy(24, 15);
 	Utility::textSleep("으", 100); Utility::textSleep("아", 100); Utility::textSleep("악", 100);
 	Utility::textSleep("~", 100);
 
+	// 이벤트 작동을 false로 전환
 	_isActivatedEvent = false;
 }
 
@@ -240,8 +245,12 @@ void GameScene::boomTrapEventDraw()
 {
 	auto gameMgr = GameMgr::instance();
 
+	// 이벤트 작동
 	_isActivatedEvent = true;
 	
+	_invisibleEventAct = false;
+	Utility::delay(0.2f);
+
 	Utility::gotoxy(19, 21);
 	Utility::setColor(Utility::yellow, Utility::black);
 	cout << "[폭탄 함정 작동]";

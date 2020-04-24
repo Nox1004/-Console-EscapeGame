@@ -11,13 +11,25 @@ void FailureScene::run()
 
 void FailureScene::failureDraw()
 {
-	cout << "탈출에 실패했습니다.\n";
+	Utility::setColor(Utility::white, Utility::black);
+	Utility::gotoxy(19, 10);
+	cout << "탈출에";
 
-	Utility::delay(1);
+	Utility::setColor(Utility::red, Utility::black);
+	cout << " 실패"; 
+	
+	Utility::setColor(Utility::white, Utility::black);
+	cout << "했습니다.\n";
 
-	cout << "1초 뒤 메인화면으로 넘어갑니다.";
+	Utility::delay(2);
 
-	Utility::delay(1);
+	int delay = 5;
+	for (int i = delay; i > 0; i--) 
+	{
+		Utility::gotoxy(13, 12);
+		cout << i <<"초 뒤 메인화면으로 넘어갑니다.";
+		Utility::delay(1);
+	}
 
 	SceneMgr::instance()->changeScene(SceneMgr::Title);
 }

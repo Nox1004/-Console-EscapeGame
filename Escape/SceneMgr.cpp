@@ -7,7 +7,7 @@
 
 SceneMgr::SceneMgr() : _cntidx{0}
 {
-	system("mode con cols=56 lines=24 | title 테스트");
+	system("mode con cols=56 lines=24 | title 탈출게임");
 
 	_scene.push_back(new TitleScene);
 	_scene.push_back(new InfoScene);
